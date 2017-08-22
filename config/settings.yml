@@ -1,0 +1,17 @@
+defaults: &defaults
+  twitter:
+    api:
+      token_url: https://api.twitter.com/oauth2/token
+      key: <%= ENV['TWITSEARCH_TWITTER_CONSUMER_KEY'] %>
+      secret: <%= ENV['TWITSEARCH_TWITTER_CONSUMER_SECRET'] %>
+      search_url: https://api.twitter.com/1.1/search/tweets.json
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
