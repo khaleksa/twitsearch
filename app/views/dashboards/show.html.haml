@@ -1,0 +1,9 @@
+.p-dashboard
+  .b-search-form
+    = form_tag(search_dashboard_path, method: 'get', remote: true) do
+      = label_tag(:q, 'Search:')
+      = text_field_tag(:q, @q)
+      = submit_tag('Search')
+  .b-search-trends
+    = render partial: 'search/trends', locals: { trends: @trends }
+  .b-search-results

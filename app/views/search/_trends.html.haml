@@ -1,0 +1,4 @@
+- trends.each do |trend|
+  .record
+    = link_to " #{trend[:name]} (#{trend[:volume]})", trend[:url]
+%hr

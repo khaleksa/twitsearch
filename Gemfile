@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'choices'
 gem 'httparty'
+gem 'haml-rails'
 
 group :development, :test do
   gem 'pry'
