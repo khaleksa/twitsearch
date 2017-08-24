@@ -1,10 +1,10 @@
 class DashboardsController < ApplicationController
   def show
     @q = params[:q] || ''
-    @trends = Api::Twitter.new.trends
+    @trends = TwitterProvider.trends
   end
 
   def search
-    @result = Api::Twitter.new.search(params[:q])
+    @result = TwitterProvider.search(params[:q])
   end
 end

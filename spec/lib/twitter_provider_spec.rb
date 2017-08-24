@@ -1,16 +1,13 @@
 require 'spec_helper'
-require 'api/twitter'
 
-describe Api::Twitter do
-  subject { described_class.new }
+describe TwitterProvider do
+  subject { described_class }
 
   let(:config) { Rails.configuration.twitter }
   let(:token) { 'SomeTokenValue' }
 
   def get_stubbed_request(url, fixture_name)
-    allow_any_instance_of(Api::Twitter).to receive(:get_token).and_return(token)
-
-    fixture = File.read(File.expand_path("fixtures/#{fixture_name}.json", File.dirname(__FILE__)))
+    fixture = File.read(File.expand_path("twitter_api/fixtures/#{fixture_name}.json", File.dirname(__FILE__)))
     headers = { 'Authorization' => "Bearer #{token}" }
     stub_request(:get, url)
         .with(query: params, headers: headers)
@@ -18,10 +15,11 @@ describe Api::Twitter do
   end
 
   before do
+    allow_any_instance_of(TwitterApi::OauthToken).to receive(:perform).and_return(token)
     get_stubbed_request(request_url, result_fixture)
   end
 
-  describe '#search' do
+  describe '.search' do
     let(:request_url) { "https://api.twitter.com#{config.api[:search_path]}" }
     let(:result_fixture) { 'twitter_search' }
     let(:params) {{ q: CGI.escape(search_text), count: 100 }}
@@ -32,7 +30,7 @@ describe Api::Twitter do
     end
   end
 
-  describe '#trends' do
+  describe '.trends' do
     let(:request_url) { "https://api.twitter.com#{config.api[:trends_path]}" }
     let(:result_fixture) { 'twitter_trends' }
     let(:params) {{ id: 1 }}
