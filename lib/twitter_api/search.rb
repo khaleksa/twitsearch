@@ -18,7 +18,6 @@ module TwitterApi
 
     def parsed_response
       tweets = []
-      binding.pry
       response['statuses'].each do |tt|
         user_info = tt['user']
         tweet_data = HashWithIndifferentAccess.new({

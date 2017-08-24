@@ -25,7 +25,6 @@ module TwitterApi
 
     def send_request
       result = self.class.get(url, query: params, headers: headers)
-      binding.pry
       raise RuntimeError, result.parsed_response if result.code >= 400
       self.response = result.parsed_response
     rescue => error

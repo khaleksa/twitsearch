@@ -18,6 +18,10 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'webmock/rspec'
 
+Dir[Rails.root.join("spec/support/*.rb")].sort.each { |f| require f }
+
+WebMock.disable_net_connect!(allow_localhost: true)
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
