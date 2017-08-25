@@ -29,6 +29,7 @@ module TwitterApi
       self.response = result.parsed_response
     rescue => error
       logger.error "TwitterApi::Request has got exception - #{error.message}, url - '#{url}', params - #{params}, headers - #{headers}"
+      raise error
     end
 
     def parsed_response

@@ -21,6 +21,7 @@ module TwitterApi
       raise RuntimeError, result.parsed_response if result.code >= 400
     rescue => error
       logger.error "TwitterApi::OauthToken has got exception - #{error.message}, headers - #{headers}"
+      raise error
     end
 
     def parsed_response

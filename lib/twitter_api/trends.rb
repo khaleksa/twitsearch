@@ -14,6 +14,8 @@ module TwitterApi
 
     def parsed_response
       hashtags = []
+      return hashtags unless response.try(:first).try(:[], 'trends')
+
       response.first['trends'].each do |trend|
         next if trend['name'].blank? || !is_hashtag?(trend['name']) || trend['tweet_volume'].blank?
         trend_info = HashWithIndifferentAccess.new({
@@ -23,6 +25,7 @@ module TwitterApi
         })
         hashtags<<trend_info
       end
+
       hashtags.sort{ |a, b| b[:volume]<=>a[:volume] }.take(10)
     end
 
