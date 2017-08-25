@@ -5,7 +5,7 @@
       .user-image{style: 'float: left; padding-right: 20px;'}
         = image_tag(user[:avatar])
       .user-name
-        = link_to " #{user[:name]}", user[:url]
+        = link_to " #{user[:name]}", user[:url], target: '_blank'
         .row
           .col-md-1
             Like #{user[:favorite_count]}
@@ -13,6 +13,6 @@
             Retweet #{user[:retweet_count]}
     .row.tweet-block
       = "#{index + 1} - #{tt['text']}"
-      .record
+      .record{ style: 'margin-top: 10px;' }
         Time: #{tt[:created_at].strftime('%H:%M %d %b %Y')}
     %hr

@@ -4,17 +4,17 @@
       %h1{style: 'text-align:center;'}
         Welcome to TwitSearch!
       .b-search-form.center_div
-        = form_tag(search_dashboard_path, method: 'get', remote: true, class: 'form-inline', id: 'main-search-form') do
+        = form_tag(root_path, method: 'get', class: 'form-inline', id: 'main-search-form') do
           = label_tag(:q, 'Search for:', style: 'width: 10%;')
-          = text_field_tag(:q, @q, style: 'width: 70%;', class: 'form-control search-text-input')
+          = text_field_tag(:q, params[:q], style: 'width: 70%;', class: 'form-control search-text-input')
           = submit_tag('Run', style: 'width: 15%;', class: 'btn btn-primary')
-
   .row
-    .col-md-2
+    .col-md-3
       .b-search-trends
         %h4
           Trends:
-        = render partial: 'search/trends', locals: { trends: @trends }
-    .col-md-10
+        = render 'search/trends', :trends => @trends
+    .col-md-9
       .b-search-results
-
+        - if @result.present?
+          = render 'search/result', :result => @result

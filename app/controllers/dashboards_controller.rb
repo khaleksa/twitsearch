@@ -1,10 +1,6 @@
 class DashboardsController < ApplicationController
   def show
-    @q = params[:q] || ''
     @trends = TwitterProvider.trends
-  end
-
-  def search
-    @result = TwitterProvider.search(params[:q])
+    @result = TwitterProvider.search(params[:q]) if params[:q].present?
   end
 end
