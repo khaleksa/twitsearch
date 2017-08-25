@@ -13,4 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require_tree .
+
+$('.trend-place').click( function(event) {
+    event.preventDefault();
+    $('#main-search-form .search-text-input').val($(this).text());
+    $('#main-search-form').submit();
+});

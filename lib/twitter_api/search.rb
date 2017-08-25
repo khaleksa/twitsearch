@@ -22,7 +22,7 @@ module TwitterApi
         user_info = tt['user']
         tweet_data = HashWithIndifferentAccess.new({
           text: tt['text'],
-          created_at: tt['created_at'],
+          created_at: Time.zone.parse(tt['created_at']),
           user: {
              name: user_info['name'],
              avatar: user_info['profile_image_url'],

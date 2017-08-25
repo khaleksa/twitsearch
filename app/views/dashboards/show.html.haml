@@ -1,9 +1,20 @@
 .p-dashboard
-  .b-search-form
-    = form_tag(search_dashboard_path, method: 'get', remote: true) do
-      = label_tag(:q, 'Search:')
-      = text_field_tag(:q, @q)
-      = submit_tag('Search')
-  .b-search-trends
-    = render partial: 'search/trends', locals: { trends: @trends }
-  .b-search-results
+  .jumbotron
+    .container
+      %h1{style: 'text-align:center;'}
+        Welcome to TwitSearch!
+      .b-search-form.center_div
+        = form_tag(search_dashboard_path, method: 'get', remote: true, class: 'form-inline', id: 'main-search-form') do
+          = label_tag(:q, 'Search for:', style: 'width: 10%;')
+          = text_field_tag(:q, @q, style: 'width: 70%;', class: 'form-control search-text-input')
+          = submit_tag('Run', style: 'width: 15%;', class: 'btn btn-primary')
+
+  .row
+    .col-md-2
+      .b-search-trends
+        %h4
+          Trends:
+        = render partial: 'search/trends', locals: { trends: @trends }
+    .col-md-10
+      .b-search-results
+

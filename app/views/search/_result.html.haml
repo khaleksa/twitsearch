@@ -1,16 +1,18 @@
 - @result.each_with_index do |tt, index|
   .tweet-wrapper
     - user = tt[:user]
-    .user-block
-      = image_tag(user[:avatar])
-      .record
+    .row.user-block
+      .user-image{style: 'float: left; padding-right: 20px;'}
+        = image_tag(user[:avatar])
+      .user-name
         = link_to " #{user[:name]}", user[:url]
-      .record
-        Like #{user[:favorite_count]}
-      .record
-        Retweet #{user[:retweet_count]}
-    .tweet-block
+        .row
+          .col-md-1
+            Like #{user[:favorite_count]}
+          .col-md-2
+            Retweet #{user[:retweet_count]}
+    .row.tweet-block
       = "#{index + 1} - #{tt['text']}"
       .record
-        Created at: #{tt[:created_at]}
+        Time: #{tt[:created_at].strftime('%H:%M %d %b %Y')}
     %hr

@@ -46,7 +46,7 @@ describe TwitterApi::Search do
     it 'should return valid data' do
       expect(tweet).to eq(HashWithIndifferentAccess.new({
           text: 'Ruby on rails is the best framework',
-          created_at: 'Sun Aug 20 19:20:23 +0000 2017',
+          created_at: Time.zone.parse('Sun Aug 20 19:20:23 +0000 2017'),
           user: {
               name: 'Mark Locklear',
               avatar: 'http://pbs.twimg.com/profile_images/860208849294426113/some_avatar.jpg',
