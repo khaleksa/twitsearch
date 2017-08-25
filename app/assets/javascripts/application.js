@@ -16,8 +16,13 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-$('.trend-place').click( function(event) {
+$('.b-search-trends').on('click', '.trend-place', function(event) {
     event.preventDefault();
     $('#main-search-form .search-text-input').val($(this).text());
     $('#main-search-form').submit();
+});
+
+$('.trends-country').click( function(event) {
+    event.preventDefault();
+    $.post('/dashboard/set_location', { woeid: $(event.target).data('woeid') });
 });

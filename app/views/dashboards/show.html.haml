@@ -11,10 +11,18 @@
   .row
     .col-md-3
       .b-search-trends
-        - if @trends.present?
-          %h4
-            Trends:
-          = render 'search/trends', :trends => @trends
+        = render 'search/trends', :trends => @trends, :country_name => @country_name
+      .b-search-trends-locations
+        %br
+        .dropdown.trend-locations
+          %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+            Select your country:
+            %span.caret
+          %ul.dropdown-menu
+            - @countries.each do |country_woeid, country_name|
+              %li
+                = link_to country_name, 'javascript:void(0)', class: 'trends-country', data: { woeid: country_woeid }
+
     .col-md-9
       .b-search-results
         - if @result.present?
