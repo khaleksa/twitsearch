@@ -6,6 +6,7 @@ defaults: &defaults
       secret: <%= ENV['TWITSEARCH_TWITTER_CONSUMER_SECRET'] %>
       search_path: /1.1/search/tweets.json
       trends_path: /1.1/trends/place.json
+      locations_path: /1.1/trends/available.json
 development:
   <<: *defaults
 
